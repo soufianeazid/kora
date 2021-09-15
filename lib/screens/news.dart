@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:kora_app/screens/categories_page/analysis.dart';
 import 'package:kora_app/screens/categories_page/featured.dart';
-import 'package:kora_app/screens/categories_page/scores.dart';
+import 'package:kora_app/screens/categories_page/goal.dart';
+import 'package:kora_app/screens/categories_page/top_players.dart';
 import 'package:kora_app/screens/setting.dart';
 import 'package:kora_app/util/body_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,8 +16,8 @@ class _NewsState extends State<News> with SingleTickerProviderStateMixin {
   int _currentIndex = 0;
   List<String> categories = [
     "Featured",
-    "Scores",
-    "Fantasy",
+    //"Scores",
+    "Analysis",
     "Top Players",
     "Videos"
   ];
@@ -82,15 +84,15 @@ class _NewsState extends State<News> with SingleTickerProviderStateMixin {
                   height: 70.h,
                   width: 200.w,
                   color: Colors.yellow,
-                  child: Center(child: Text('Titel'),),
+                  child: Center(
+                    child: Text('Titel'),
+                  ),
                 ),
                 SizedBox(height: 10.h),
                 InkWell(
-                  onTap: (){
-                    Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Setting()));
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Setting()));
                   },
                   child: Row(
                     children: [
@@ -101,11 +103,7 @@ class _NewsState extends State<News> with SingleTickerProviderStateMixin {
                   ),
                 ),
                 SizedBox(height: 10.h),
-                Text("Privacy Policy",
-                    style: TextStyle(
-                        color: Style.blackTextColor, fontSize: 22.sp)),
-                SizedBox(height: 10.h),
-                Text("About Us",
+                Text("Acounts",
                     style: TextStyle(
                         color: Style.blackTextColor, fontSize: 22.sp)),
                 SizedBox(height: 10.h),
@@ -125,8 +123,8 @@ class _NewsState extends State<News> with SingleTickerProviderStateMixin {
       duration: duration,
       top: 0.w,
       bottom: 0.w,
-      left: isCollapsed ? 0.w : 0.6.w * screenWidth!,
-      right: isCollapsed ? 0.w : -0.2.w * screenWidth!,
+      left: isCollapsed ? 0.w : -0.2.w * screenWidth!,
+      right: isCollapsed ? 0.w : 0.6.w * screenWidth!,
       child: ScaleTransition(
         scale: _scaleAnimation!,
         child: Material(
@@ -163,7 +161,9 @@ class _NewsState extends State<News> with SingleTickerProviderStateMixin {
                           },
                         ),
                         Text("News", style: Style.pageTitel),
-                        Icon(Icons.search, color: Style.greyTextColor),
+                        SizedBox(
+                          width: 10.w,
+                        ),
                       ],
                     ),
                   ),
@@ -233,22 +233,10 @@ class _NewsState extends State<News> with SingleTickerProviderStateMixin {
   Widget getBody() {
     List<Widget> pages = [
       Feautured(),
-      Scores(),
-      Container(
-        child: Center(
-          child: Text('fantasy'),
-        ),
-      ),
-      Container(
-        child: Center(
-          child: Text('top Players'),
-        ),
-      ),
-      Container(
-        child: Center(
-          child: Text('videos'),
-        ),
-      ),
+      //Scores(),
+      Analysis(),
+      TopPlayers(),
+      Goal(),
     ];
     return IndexedStack(
       index: selectedIndex,

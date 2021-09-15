@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:kora_app/screens/analysis_detail.dart';
 import 'package:kora_app/screens/top_news.dart';
 import 'package:kora_app/util/body_colors.dart';
+import 'package:kora_app/widgets/ads.dart';
 
 class Feautured extends StatefulWidget {
   const Feautured({Key? key}) : super(key: key);
@@ -26,12 +28,43 @@ class _FeauturedState extends State<Feautured> {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
-                  top_news('asset/image/image3.jpg', 'Analysis',
-                      'Five reasons why the jaguars will\nmake the 2018 nfl playoffs'),
-                  top_news('asset/image/image3.jpg', 'Analysis',
-                      'Five reasons why the jaguars will\nmake the 2018 nfl playoffs'),
-                  top_news('asset/image/image3.jpg', 'Analysis',
-                      'Five reasons why the jaguars will\nmake the 2018 nfl playoffs'),
+                  TopNewsTable(
+                    image: 'asset/image/image3.jpg',
+                    iconText: 'Analysis',
+                    titel:
+                        'Five reasons why the jaguars willmake the 2018 nfl playoffs',
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AnalysisDetail()));
+                    },
+                  ),
+                  TopNewsTable(
+                    image: 'asset/image/image3.jpg',
+                    iconText: 'Analysis',
+                    titel:
+                        'Five reasons why the jaguars willmake the 2018 nfl playoffs',
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AnalysisDetail()));
+                    },
+                  ),
+                 
+                  TopNewsTable(
+                    image: 'asset/image/image3.jpg',
+                    iconText: 'Analysis',
+                    titel:
+                        'Five reasons why the jaguars willmake the 2018 nfl playoffs',
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AnalysisDetail()));
+                    },
+                  ),
                 ],
               ),
             ),
@@ -65,9 +98,37 @@ class _FeauturedState extends State<Feautured> {
             ),
             child: Column(
               children: [
-                today_news(),
-                today_news(),
-                today_news(),
+                TodayNews(
+                  image: 'asset/image/image3.jpg',
+                  titel: 'Carson Wentz extension inevitable',
+                  subTitel:
+                      'Giveng quarterback Carson Wentz areccord-breaking contract was the easy',
+                  onTap: () {
+                    Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => NewsDetail()));
+                    
+                  },
+                ),
+                TodayNews(
+                  image: 'asset/image/image3.jpg',
+                  titel: 'Carson Wentz extension inevitable',
+                  subTitel:
+                      'Giveng quarterback Carson Wentz areccord-breaking contract was the easy',
+                  onTap: () {
+                   Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => NewsDetail()));
+                  },
+                ),
+                TodayNews(
+                  image: 'asset/image/image3.jpg',
+                  titel: 'Carson Wentz extension inevitable',
+                  subTitel:
+                      'Giveng quarterback Carson Wentz areccord-breaking contract was the easy',
+                  onTap: () {
+                   Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => NewsDetail()));
+                  },
+                ),
               ],
             ),
           )
@@ -75,25 +136,31 @@ class _FeauturedState extends State<Feautured> {
       ),
     );
   }
+}
 
-  Widget top_news(String image, iconText, titel) {
+class TopNewsTable extends StatelessWidget {
+  String? image;
+  String? titel;
+  String? iconText;
+  Function()? onTap;
+
+  TopNewsTable({Key? key, this.iconText, this.image, this.onTap, this.titel})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(right: 10.w, bottom: 20.h),
       child: Stack(
         children: [
           InkWell(
-            onTap: (){
-              Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => TopNews()));
-            },
+            onTap: onTap,
             child: Container(
               width: 300.w,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5.r),
                   image: DecorationImage(
-                      image: AssetImage(image), fit: BoxFit.cover),
+                      image: AssetImage(image!), fit: BoxFit.cover),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.5),
@@ -117,7 +184,7 @@ class _FeauturedState extends State<Feautured> {
                     padding: EdgeInsets.symmetric(horizontal: 5.w),
                     child: Center(
                       child: Text(
-                        iconText,
+                        iconText!,
                         style: TextStyle(color: Style.whiteColor),
                       ),
                     ),
@@ -126,11 +193,14 @@ class _FeauturedState extends State<Feautured> {
                 SizedBox(
                   height: 10.h,
                 ),
-                Text(
-                  titel,
-                  style: Style.whiteTitelText,
-                  maxLines: 2,
-                  overflow: TextOverflow.clip,
+                Container(
+                  width: 260.w,
+                  child: Text(
+                    titel!,
+                    style: Style.whiteTitelText,
+                    maxLines: 2,
+                    overflow: TextOverflow.clip,
+                  ),
                 ),
               ],
             ),
@@ -139,22 +209,35 @@ class _FeauturedState extends State<Feautured> {
       ),
     );
   }
+}
 
-  Widget today_news() {
+class TodayNews extends StatelessWidget {
+  String? titel;
+  String? image;
+  String? subTitel;
+  Function()? onTap;
+
+  TodayNews({Key? key, this.image, this.onTap, this.subTitel, this.titel})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            height: 90.h,
-            width: 90.w,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5.r),
-              image: DecorationImage(
-                  image: AssetImage('asset/image/image3.jpg'),
-                  fit: BoxFit.cover),
+          InkWell(
+            onTap: onTap,
+            child: Container(
+              height: 90.h,
+              width: 90.w,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5.r),
+                image: DecorationImage(
+                    image: AssetImage(image!), fit: BoxFit.cover),
+              ),
             ),
           ),
           Column(
@@ -162,7 +245,7 @@ class _FeauturedState extends State<Feautured> {
               Container(
                 width: 205.w,
                 child: Text(
-                  'Carson Wentz extension inevitable',
+                  titel!,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                   style: Style.blackTitelText,
@@ -174,7 +257,7 @@ class _FeauturedState extends State<Feautured> {
               Container(
                 width: 205.w,
                 child: Text(
-                  'Giveng quarterback Carson Wentz areccord-breaking contract was the easy',
+                  subTitel!,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                   style: Style.greyText,

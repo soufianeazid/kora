@@ -18,7 +18,7 @@ class Style {
   );
   static TextStyle whiteTitelText = TextStyle(
     color: Colors.white,
-    fontSize: 16.sp,
+    fontSize: 20.sp,
     fontWeight: FontWeight.w700,
     
   );

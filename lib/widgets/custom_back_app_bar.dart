@@ -10,31 +10,37 @@ class AppBarBack extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       elevation: 1,
-      child: Container(
-        height: 70,
-        width: double.infinity,
-        color: Style.whiteColor,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            InkWell(
-              onTap: () {
-                Navigator.pop(
-                  context,
-                );
-              },
-              child: Icon(
-                Icons.keyboard_arrow_left,
-                size: 30.sp,
-                color: Style.blackTextColor,
+      child: Padding(
+        padding:  EdgeInsets.only(top: 10.h),
+        child: Container(
+          height: 70,
+          //width: double.infinity,
+          color: Style.whiteColor,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            //mainAxisSize: MainAxisSize.max,
+            children: [
+           
+              Text(text!, style: Style.pageTitel),
+                 SizedBox(width: 100.w,),
+
+                            InkWell(
+                onTap: () {
+                  Navigator.pop(
+                    context,
+                  );
+                },
+                child: Icon(
+                  Icons.keyboard_arrow_left,
+                  size: 30.sp,
+                  color: Style.blackTextColor,
+                ),
               ),
-            ),
-            Text(text!, style: Style.pageTitel),
-            SizedBox(
-              width: 20.w,
-            )
-          ],
+              SizedBox(
+                width: 20.w,
+              )
+            ],
+          ),
         ),
       ),
     );

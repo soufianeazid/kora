@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kora_app/util/body_colors.dart';
 
-class TopNews extends StatefulWidget {
-  const TopNews({Key? key}) : super(key: key);
+class AnalysisDetail extends StatefulWidget {
+  const AnalysisDetail({Key? key}) : super(key: key);
 
   @override
   _TopNewsState createState() => _TopNewsState();
 }
 
-class _TopNewsState extends State<TopNews> {
+class _TopNewsState extends State<AnalysisDetail> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -37,10 +37,16 @@ class _TopNewsState extends State<TopNews> {
                       },
                       child: Padding(
                         padding: EdgeInsets.only(top: 20.h, left: 10.w),
-                        child: Icon(
-                          Icons.keyboard_arrow_left,
-                          size: 35.sp,
-                          color: Style.whiteColor,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          //crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Icon(
+                              Icons.keyboard_arrow_left,
+                              size: 40.sp,
+                              color: Style.whiteColor,
+                            ),
+                          ],
                         ),
                       ))
                 ],
